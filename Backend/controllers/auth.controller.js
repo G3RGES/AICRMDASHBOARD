@@ -1,7 +1,7 @@
-import { asyncHandler } from "../utils/asyncHandler";
-import { ApiError } from "../utils/ApiError";
-import { generateToken } from "../utils/generateToken";
-import { User } from "./../models/User";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/ApiError.js";
+import { generateToken } from "../utils/generateToken.js";
+import { User } from "../models/User.js";
 
 const toClientUser = (user) => ({
   id: user._id,
