@@ -23,3 +23,6 @@ const contactSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+
+contactSchema.index({ name: "text", email: "text", company: "text" });
+export const Contact = mongoose.model("Contact", contactSchema);
