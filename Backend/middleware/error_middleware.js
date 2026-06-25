@@ -34,7 +34,7 @@ export const errorHandler = (err, req, res, next) => {
       .join(", ");
   }
 
-  if (Process.env.NODE_ENV !== "production" && statusCode === 500) {
+  if (process.env.NODE_ENV !== "production" && statusCode === 500) {
     console.error("💥", err);
   }
 
@@ -42,7 +42,7 @@ export const errorHandler = (err, req, res, next) => {
   res.status(statusCode).json({
     success: false,
     error: message,
-    ...(Process.env.NODE_ENV !== "production" && statusCode === 500
+    ...(process.env.NODE_ENV !== "production" && statusCode === 500
       ? { stack: err.stack }
       : {}),
   });
