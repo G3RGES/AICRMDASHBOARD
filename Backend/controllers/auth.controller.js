@@ -54,3 +54,27 @@ export const login = asyncHandler(async (req, res) => {
     user: toClientUser(user),
   });
 });
+
+export const getMe = asyncHandler(async (req, res) => {
+  res.json({
+    success: true,
+    user: toClientUser(req.user),
+  });
+});
+
+export const updateMe = asyncHandler(async (req, res) => {
+  const { name, company, avatar, password } = req.body;
+  const user = req.user;
+
+  if (name !== undefined) user.name = name;
+  if (company !== undefined) user.company = company;
+  if (avatar !== undefined) user.avatar = avatar;
+  if (password) user.password = password;
+
+  await user.save();
+
+  res.json({
+    success: true,
+    user: toClientUser(user),
+  });
+});
