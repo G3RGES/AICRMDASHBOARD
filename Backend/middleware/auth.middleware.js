@@ -8,7 +8,7 @@ export const protect = asyncHandler(async (req, res, next) => {
   let token;
   const header = req.headers.authorization;
 
-  if (header && header.startsWith("Bearer")) {
+  if (header && header.startsWith("Bearer ")) {
     token = header.split(" ")[1];
   }
 
