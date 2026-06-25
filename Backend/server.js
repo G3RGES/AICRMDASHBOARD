@@ -6,6 +6,8 @@ import morgan from "morgan";
 import { connectDB } from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/error_middleware.js";
 
+import authRoutes from "./routes/auth.route.js";
+
 const app = express();
 
 //* Middleware
@@ -31,6 +33,7 @@ app.get("/api/health", (req, res) => {
     message: "Server is running | TTP CRM API",
   });
 });
+app.use("/api/auth", authRoutes);
 
 //* Error handlers
 app.use(notFound);
