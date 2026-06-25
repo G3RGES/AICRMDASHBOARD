@@ -5,7 +5,7 @@ import {
   getMe,
   updateMe,
 } from "../controllers/auth.controller.js";
-import { protect } from "../middleware/auth_middleware.js";
+import { protect } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
