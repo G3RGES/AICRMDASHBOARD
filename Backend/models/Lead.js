@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-export const LEAD_STATUSES = ["new", "contacted", "qualified", "lost", "won"];
+export const LEAD_STATUSES = ["New", "Contacted", "Qualified", "Lost", "Won"];
 
-export const LEAD_PRIORITIES = ["low", "medium", "high"];
+export const LEAD_PRIORITIES = ["Low", "Medium", "High"];
 
 const leadSchema = new mongoose.Schema(
   {
