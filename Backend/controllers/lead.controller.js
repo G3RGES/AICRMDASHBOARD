@@ -1,6 +1,6 @@
-import { Lead } from "./../models/Lead.js";
-import { asyncHandler } from "./../utils/asyncHandler.js";
-import { ApiError } from "./../utils/ApiError.js";
+import { Lead } from "../models/Lead.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+import { ApiError } from "../utils/ApiError.js";
 
 export const getLeads = asyncHandler(async (req, res) => {
   const { status, priority, source, search } = req.query;
@@ -14,7 +14,7 @@ export const getLeads = asyncHandler(async (req, res) => {
     filter.$or = [{ name: rx }, { company: rx }, { email: rx }];
   }
 
-  const leads = await Leads.find(filter).sort({ order: 1, createdAt: -1 });
+  const leads = await Lead.find(filter).sort({ order: 1, createdAt: -1 });
   res.json({ success: true, count: leads.length, leads });
 });
 
