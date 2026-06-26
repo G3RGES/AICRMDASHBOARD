@@ -18,7 +18,7 @@ export const getLeads = asyncHandler(async (req, res) => {
   res.json({ success: true, count: leads.length, leads });
 });
 
-const getLead = asyncHandler(async (req, res) => {
+export const getLead = asyncHandler(async (req, res) => {
   const lead = await Lead.findOne({ _id: req.params.id, owner: req.user._id });
   if (!lead) {
     throw new ApiError(404, "Lead not found");
@@ -26,12 +26,12 @@ const getLead = asyncHandler(async (req, res) => {
   res.json({ success: true, lead });
 });
 
-const createLead = asyncHandler(async (req, res) => {
+export const createLead = asyncHandler(async (req, res) => {
   const lead = await Lead.create({ ...req.body, owner: req.user._id });
   res.status(201).json({ success: true, lead });
 });
 
-const updateLead = asyncHandler(async (req, res) => {
+export const updateLead = asyncHandler(async (req, res) => {
   const { owner, ...updates } = req.body;
 
   const lead = Lead.findOneAndUpdate(
@@ -45,7 +45,7 @@ const updateLead = asyncHandler(async (req, res) => {
   res.json({ success: true, lead });
 });
 
-const deleteLead = asyncHandler(async (req, res) => {
+export const deleteLead = asyncHandler(async (req, res) => {
   const lead = await Lead.findOneAndDelete({
     _id: req.params.id,
     owner: req.user._id,
@@ -56,7 +56,7 @@ const deleteLead = asyncHandler(async (req, res) => {
   res.json({ success: true, message: "Lead deleted" });
 });
 
-const reorderLeads = asyncHandler(async (req, res) => {
+export const reorderLeads = asyncHandler(async (req, res) => {
   const { updates } = req.body;
 
   if (!Array.isArray(updates)) {
