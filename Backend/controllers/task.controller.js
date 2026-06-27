@@ -18,6 +18,11 @@ export const getTask = asyncHandler(async (req, res) => {
   res.status(200).json({ success: true, count: task.length, task });
 });
 
+export const createTask = asyncHandler(async (req, res) => {
+  const task = await Task.create({ ...req.body, owner: req.user._id });
+  res.status(201).json({ success: true, task });
+});
+
 export const updateTask = asyncHandler(async (req, res) => {
   const { owner, ...updates } = req.body;
 
