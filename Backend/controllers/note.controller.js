@@ -17,3 +17,41 @@ export const getNotes = asyncHandler(async (req, res) => {
 
   res.json({ success: true, count: notes.length, notes });
 });
+
+export const createNote = asyncHandler(async (req, res) => {
+  const { contact, lead, content, pinned } = req.body;
+  if (!content) throw new ApiError(400, "Content is required");
+
+  const note = await Note.create({
+    owner: req.user._id,
+    content,
+    lead: lead || null,
+    contact: contact || null,
+    pinned: Boolean(pinned),
+  });
+  res.status(201).json({ success: true, note });
+});
+
+export const updateNote = asyncHandler(async (req, res) => {
+  const { owner, ...updates } = req.body;
+
+  const note = await Note.findOneAndUpdate(
+    { owner: req.user._id, _id: req.params.id },
+    updates,
+    { new: true, runValidators: true },
+  );
+  if (!note) throw new ApiError(404, "Note not found");
+
+  res.json({ success: true, note });
+});
+
+export const deleteNote = asyncHandler(async (req, res) => {
+  const note = await Note.findOneAndDelete({
+    _id: req.params.id,
+    owner: req.user._id,
+  });
+  if (!note) {
+    throw new ApiError(404, "Note not found");
+  }
+  res.json({ success: true, message: "Note deleted" });
+});
