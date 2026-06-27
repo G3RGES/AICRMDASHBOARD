@@ -17,7 +17,7 @@ const contactSchema = new mongoose.Schema(
     phone: { type: String, trim: true, default: "" },
     company: { type: String, trim: true, default: "" },
     title: { type: String, trim: true, default: "" },
-    tags: { type: String, trim: true },
+    tags: [{ type: String, trim: true }],
     notes: { type: String, default: "" },
     favorite: { type: Boolean, default: false },
   },
