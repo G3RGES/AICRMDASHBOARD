@@ -45,3 +45,67 @@ const generateJSON = async (prompt, schema) => {
     );
   }
 };
+
+const generateText = async (prompt, temperature = 0.7) => {
+  const ai = getClient();
+
+  try {
+    const response = await ai.models.generateContent({
+      model: MODEL(),
+      contents: prompt,
+      config: {
+        temperature,
+      },
+    });
+    return response.text.trim();
+  } catch (err) {
+    console.error("💥", "Gemini text error: ", err, err?.message);
+    throw new ApiError(
+      502,
+      err?.message || "AI Request failed, please try again.",
+    );
+  }
+};
+
+export const generateLeadSummary = async (lead) => {
+  const prompt = `You are and expert B2B sales analyst for a CRM called TTP CRM. 
+    Analyse the following sales lead and produce a concise assessment.
+
+    Lead details:
+    - Lead name: ${lead.name || "N/A"}
+    - Lead company: ${lead.company || "N/A"}
+    - Lead email: ${lead.email || "N/A"}
+    - Current pipline stage: ${lead.status || "New"}
+    - Potential deal value: ${lead.value || 0}
+    - Lead status: ${lead.status}
+    - Lead source: ${lead.source}
+    - Lead notes: ${lead.notes}
+
+    Return JSON only.`;
+
+  const schema = {
+    type: "object",
+    properties: {
+      summary: {
+        type: "string",
+        description: "2-3 sentences executive summarizing the lead.",
+      },
+      riskScore: {
+        type: "integer",
+        description: "The risk score of the lead. 0 (safe) to 100 (high risk).",
+      },
+      suggestedPriority: {
+        type: "string",
+        enum: ["Low", "Medium", "High"],
+      },
+      nextBestAction: {
+        type: "string",
+        description: "The next best action to take for the lead.",
+      },
+    },
+    required: ["summary", "riskScore", "suggestedPriority", "nextBestAction"],
+  };
+  return generateJSON(prompt, schema);
+};
+
+//* continue from 1:00:35
