@@ -5,7 +5,7 @@ import app from "./../server";
 let client = null;
 
 const getClient = () => {
-  const apiKey = process.env.GEMENI_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
     throw new ApiError(
@@ -20,8 +20,8 @@ const getClient = () => {
   return client;
 };
 
-const MODEL = () => process.env.GEMENI_MODEL || "gemini-2.5-flash";
-export const isAIConfigured = () => Boolean(process.env.GEMENI_API_KEY);
+const MODEL = () => process.env.GEMINI_MODEL || "gemini-2.5-flash";
+export const isAIConfigured = () => Boolean(process.env.GEMINI_API_KEY);
 
 const generateJSON = async (prompt, schema) => {
   const ai = getClient();
