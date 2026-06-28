@@ -140,3 +140,41 @@ export const generateEmail = async ({ lead, purpose, tone, sender }) => {
   };
   return generateJSON(prompt, schema);
 };
+
+export const generateSalesInsights = async (pipelineStats) => {
+  const prompt = `You are a revenue-operations advisor. Given this snapshot of a stats pipline. 
+  Identify what is working, what is at risk, and concrete actions to improve conversation.
+  
+  Pipeline sanpshot (JSON):
+  ${JSON.stringify(pipelineStats, null, 2)}
+
+  Return JSON only.`;
+
+  const schema = {
+    type: "object",
+    properties: {
+      headline: {
+        type: "object",
+        description: "One-sentence summary of pipeline health",
+      },
+      insights: {
+        type: "array",
+        description: "3-5 specific, data-driven observations",
+        items: { type: "string" },
+      },
+      recommendations: {
+        type: "array",
+        description: "3-5 prioritized, actionable recommendations",
+        items: { type: "string" },
+      },
+      healthScore: {
+        type: "integer",
+        description: "Overall pipeline health, 0-100",
+      },
+    },
+
+    required: ["headline", "insights", "recommendations", "healthScore"],
+  };
+
+  return generateJSON(prompt, schema);
+};
