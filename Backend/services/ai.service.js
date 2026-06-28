@@ -1,6 +1,5 @@
 import { GoogleGenAI } from "@google/genai";
 import { ApiError } from "../utils/ApiError.js";
-import app from "./../server";
 
 let client = null;
 
