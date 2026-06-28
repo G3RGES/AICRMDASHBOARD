@@ -178,3 +178,5 @@ export const generateSalesInsights = async (pipelineStats) => {
 
   return generateJSON(prompt, schema);
 };
+
+export { generateText };
