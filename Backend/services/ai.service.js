@@ -108,4 +108,35 @@ export const generateLeadSummary = async (lead) => {
   return generateJSON(prompt, schema);
 };
 
-//* continue from 1:00:35
+export const generateEmail = async ({ lead, purpose, tone, sender }) => {
+  const prompt = `You are a senior sales rep writing on behalf of ${sender?.name || "our team"} ${
+    sender?.company ? `at ${sender?.company}` : ""
+  }.
+  
+    Write a professional sales email.
+    purpose: ${purpose || "Follow-up"}
+    desired tone: ${tone || "Friendly & professional"}
+
+    Recipient details:
+    lead name: ${lead?.name || "there"}
+    lead company: ${lead?.company || "N/A"}
+    Pipeline stage: ${lead?.status || "New"}
+    Context / notes: ${lead?.notes || "none"}
+  
+    Return JSON only with a compelling subject line and a complete email body.
+    Use line breaks (\\n) in the body. Keep it under 180 words. Sign off as ${sender?.name || "the TTP CRM team"}.`;
+
+  const schema = {
+    type: "object",
+    properties: {
+      subject: {
+        type: "string",
+      },
+      body: {
+        type: "string",
+      },
+    },
+    required: ["subject", "body"],
+  };
+  return generateJSON(prompt, schema);
+};
