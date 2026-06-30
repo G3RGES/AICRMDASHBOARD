@@ -16,6 +16,7 @@ export function AiInsightsCard() {
     setLoading(true);
     try {
       const res = await aiApi.salesInsights({});
+      console.log(res);
       setData(res);
     } catch (err) {
       toast.error(err.message || "Could not generate insights");
@@ -32,7 +33,9 @@ export function AiInsightsCard() {
             <Sparkles className="h-5 w-5" />
           </div>
           <div>
-            <h3 className="text-base font-semibold text-ink">AI Sales Insights</h3>
+            <h3 className="text-base font-semibold text-ink">
+              AI Sales Insights
+            </h3>
             <p className="text-xs text-ink-soft">Powered by Gemini</p>
           </div>
         </div>
@@ -76,10 +79,18 @@ export function AiInsightsCard() {
                 style={{ width: `${data.healthScore}%` }}
               />
             </div>
-            <p className="mt-2.5 text-sm font-medium text-ink">{data.headline}</p>
+            <p className="mt-2.5 text-sm font-medium text-ink">
+              {typeof data.headline === "string"
+                ? data.headline
+                : JSON.stringify(data.headline)}
+            </p>
           </div>
 
-          <Section icon={TrendingUp} title="Observations" items={data.insights} />
+          <Section
+            icon={TrendingUp}
+            title="Observations"
+            items={data.insights}
+          />
           <Section
             icon={Lightbulb}
             title="Recommendations"
