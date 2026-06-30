@@ -1,50 +1,133 @@
-# TTP CRM
+# 🚀 TTP CRM
 
-A modern AI-powered CRM platform designed to help businesses manage leads, track sales pipelines, monitor revenue performance, and gain actionable AI-driven insights.
+An AI-powered Customer Relationship Management (CRM) platform built with the MERN stack. TTP CRM helps businesses manage leads, contacts, follow-ups, sales pipelines, and customer relationships while leveraging Google Gemini AI to generate intelligent sales insights and automate repetitive tasks.
 
-## Project Overview
+---
 
-TTP CRM provides sales teams with a centralized dashboard for managing customer relationships, tracking deal progress, scheduling follow-ups, and analyzing business performance.
+## ✨ Features
 
-## Features
+### 🔐 Authentication
 
-- Dashboard Analytics
-- Lead Management
-- Sales Pipeline Tracking
-- Contact Management
-- Follow-up & Task Management
-- Revenue Monitoring
+- Secure JWT authentication
+- User registration & login
+- Protected API routes
+- Password hashing with bcrypt
+
+### 📊 Dashboard
+
+- Business overview
+- Revenue analytics
+- Pipeline metrics
+- Lead statistics
+- AI-powered sales insights
+
+### 👥 Lead Management
+
+- Create, edit, delete leads
+- Lead qualification pipeline
+- Priority management
+- Source tracking
+- Search & filtering
+
+### 📇 Contact Management
+
+- Full CRUD operations
+- Company information
+- Tags & notes
+- Search functionality
+
+### ✅ Follow-ups & Tasks
+
+- Create and manage follow-up tasks
+- Task priorities
+- Due dates
+- Progress tracking
+- Lead & contact associations
+
+### 🤖 AI Features (Google Gemini)
+
+- AI Lead Summary
+- AI Email Generator
 - AI Sales Insights
-- Role-Based Authentication
-- Real-Time Business Metrics
+- Pipeline Health Score
+- Actionable Recommendations
 
-## Project Structure
+---
 
-```text
-AICRMDASHBOARD
-├── Backend
-└── Frontend
-```
-
-## Tech Stack
+## 🛠 Tech Stack
 
 ### Frontend
+
 - React.js
 - Vite
-- React Router
+- React Router DOM
 - Tailwind CSS
 - Axios
+- Lucide React
+- Recharts
+- Sonner
 
 ### Backend
+
 - Node.js
 - Express.js
-- MongoDB
+- MongoDB Atlas
+- Mongoose
 - JWT Authentication
+- bcrypt.js
+- Google Gemini API
 
-## Status
+---
 
-🚧 Currently in active development.
+## 📁 Project Structure
 
-## Author
+```text
+AICRMDashboard
+│
+├── Backend
+│   ├── controllers
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── services
+│   └── utils
+│
+└── Frontend
+    ├── src
+    │   ├── components
+    │   ├── pages
+    │   ├── hooks
+    │   ├── lib
+    │   └── store
+```
 
-Built by Gerges Nashaat.
+---
+
+## 🚀 Getting Started
+
+---
+
+## 🎯 Future Improvements
+
+- Email notifications
+- Calendar integration
+- Team collaboration
+- File attachments
+- Advanced analytics
+- Role & permission management
+
+---
+
+## 👨‍💻 Author
+
+**Gerges Nashaat**
+
+- GitHub: https://github.com/G3RGES
+- Portfolio: https://gergesnashaat.vercel.app/
+- LinkedIn: https://linkedin.com/in/gergesnashaat
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
