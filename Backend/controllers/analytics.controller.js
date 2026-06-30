@@ -60,7 +60,7 @@ export const getOverview = asyncHandler(async (req, res) => {
   res.json({
     success: true,
     status: {
-      revenueWon: WonValue,
+      revenueWon: wonValue,
       pipelineValue: totalValue,
       totalLeads: leads.length,
       totalContacts: contactCount,
