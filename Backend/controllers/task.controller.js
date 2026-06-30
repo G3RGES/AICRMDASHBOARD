@@ -10,12 +10,17 @@ export const getTask = asyncHandler(async (req, res) => {
   if (priority) filter.priority = priority;
   if (relatedLead) filter.relatedLead = relatedLead;
 
-  const task = await Task.find(filter)
+  // console.log("User:", req.user._id);
+  // console.log("Filter:", filter);
+
+  const tasks = await Task.find(filter)
     .sort({ status: 1, dueDate: 1, createdAt: -1 })
     .populate("relatedLead", "name company")
     .populate("relatedContact", "name company");
 
-  res.status(200).json({ success: true, count: task.length, task });
+  // console.log("Tasks:", task);
+
+  res.status(200).json({ success: true, count: tasks.length, tasks });
 });
 
 export const createTask = asyncHandler(async (req, res) => {
