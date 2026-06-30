@@ -153,7 +153,7 @@ export const generateSalesInsights = async (pipelineStats) => {
     type: "object",
     properties: {
       headline: {
-        type: "object",
+        type: "string",
         description: "One-sentence summary of pipeline health",
       },
       insights: {
