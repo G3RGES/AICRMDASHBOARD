@@ -4,3 +4,4 @@ Backend/.env
 */node_modules
 Backend/dns-test.js
 Backend/dns-test copy.js
+Frontend/.env
